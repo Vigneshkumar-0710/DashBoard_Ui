@@ -68,7 +68,7 @@ function Dashboard() {
       <div className="left-bar">
         <div  className="left-top-content">
         <div className="heading1">Board.</div>
-        <div className="dashboard-LB"><Dash/>Dashboard....</div>
+        <div className="dashboard-LB"><Dash/>Dashboard</div>
         <div className="contents"><Transactions/>Transactions</div>
         <div className="contents"><Schedules/>Schedules</div>
         <div className="contents">< Users />Users</div>
