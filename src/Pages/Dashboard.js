@@ -89,8 +89,8 @@ function Dashboard() {
 </form>
       
       
-      <Notifications/>
-      <Profile />
+      <div className='notification'><Notifications/></div>
+      <div className='profile'><Profile /></div>
       {/* <button className="button-1" onClick={()=>(navigate(-1))}>
       Logout
       </button> */}
