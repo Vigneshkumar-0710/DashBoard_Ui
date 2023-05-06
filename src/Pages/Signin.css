@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 412px ) {
   .heading{
     display: none;
   }
@@ -13,6 +13,18 @@
     width: 100% !important;
   }
 }
+@media screen and (max-height: 906px ) {
+    .heading{
+      display: none;
+    }
+    .left-div{
+      display: none !important;
+      background-color:#e3e5e6;
+    }
+    .right-div{
+      width: 100% !important;
+    }
+  }
 .left-div {
       display: flex;
       width: 30%;
