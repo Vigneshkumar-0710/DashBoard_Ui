@@ -14,8 +14,8 @@ function Signin(){
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	localStorage.setItem('username','vick123@gmail.com');
-	localStorage.setItem('password','vicky0710.');
+	localStorage.setItem('username','listed.inc@gmail.com');
+	localStorage.setItem('password','listedinc');
 	function handleSubmit(e) {
 		e.preventDefault();
 		// Check if username and password match stored values
