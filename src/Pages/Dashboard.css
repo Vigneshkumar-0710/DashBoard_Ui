@@ -60,7 +60,13 @@ flex-direction: row !important;
    .schedule-container{
     width: 100% !important;
     padding: 8px 20px 20px 10px !important;
+    flex-basis: 100% !important;
    }
+   .see-all {
+    display: none !important;
+    
+   }
+   
   }
 
 body {
