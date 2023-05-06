@@ -261,10 +261,12 @@ function Dashboard() {
         <div className="top-bar-box">
           <p className="dash-RB">Dashboard</p>
           <div className="see-all1">
+            <div className='search-bar'>
             <form>
               <input type="search1" placeholder="Search..." />
               <button type="submit1">Search</button>
             </form>
+            </div>
 
             <div className="notification">
               <Notifications />
@@ -303,11 +305,10 @@ function Dashboard() {
             </div>
           </div>
           <div className="card4">
-            <div className="card4-content">
+            <div className="card3-content">
               <div className="cards-heading">Total Users</div>
-              <div className="card4-values">892</div>
+              <div className="card3-values">892</div>
             </div>
-
             <div className="icon-card">
               <Total_Users />
             </div>

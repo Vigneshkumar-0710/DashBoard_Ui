@@ -1,6 +1,68 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@media screen and (max-width: 600px) {
+   .left-bar{
+    display: none !important;
+   }
+   .right-bar{
+    height: 100% !important;
+    width: 100% !important;  
+    gap:40px !important;
+    padding:8px 50px 50px 20px !important;
+   }
+   .search-bar{
+    display: none !important;
+   }
+   .top-bar-box{
+    gap: 160px  !important;
+    display: flex!important;
+flex-direction: row !important;
+   }
+   
+   .cards-container{
+  display: flex;
+  flex-direction: row;
+   flex-wrap: wrap !important;
+  margin-left: 0px !important;
+   }
+   .card1{
+    gap:170px !important;
+   }
+   .card2{
+   gap: 175px !important;
+   }
+   .card3{
+    gap: 205px !important;
+   }
+   .card4{
+    gap: 216px !important;
+   }
+   .card2-values{
+    padding-right: 68px !important;
+   }
+   .card3-values{
+    margin-right: 40px !important;
+   }
+   
+   .chart-containers{
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+   }
+   .line-chart-container{
+    width: 78% !important;
+   }
+   .pie-chart-container1{
+    width: 100% !important;
+    padding: 8px 20px 20px 0px !important;
+   }
+   .schedule-container{
+    width: 100% !important;
+    padding: 8px 20px 20px 0px !important;
+   }
+  }
+
 body {
     background-color: #DDDDDD;
     width:100vw;
@@ -26,16 +88,14 @@ body {
     
 }
 .right-bar{
-    
-    padding: 0px 0px 10px 40px;
+    padding: 30px;
     width: 80%;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 .card1{
-    display: flex;
-    
+    display: flex; 
     flex-basis: 25%;
     gap: 75px;
     padding: 27px 10px 34px 28px;
@@ -360,7 +420,7 @@ form {
   .pie-legends{
     display: flex;
     flex-direction: column;
-    gap:18px;
+    gap:16px;
   }
   .legend-1{
     display: flex;
@@ -401,8 +461,8 @@ form {
 }
   
   
-.legend-space {
+.legend-space{
     display: flex;
     flex-direction: column;
-    gap:8px;
+    gap: 8px;
 }
