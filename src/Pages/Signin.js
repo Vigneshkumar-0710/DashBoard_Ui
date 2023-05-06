@@ -3,15 +3,34 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useState} from "react";
 
 import './Signin.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCookie,faAppleAlt } from '@fortawesome/free-solid-svg-icons';
+
 import {GoogleLogin} from 'react-google-login';
-import { Apple } from "./Icons";
-const clientId='159676038920-vrl6m394je5bd6crps9htma6l10gctch.apps.googleusercontent.com';
+import { Apple,GoogleLoginBtn } from "./Icons";
+
+const clientId='159676038920-7nk2oqq649e9dk64uml2bubgt6q5fpuv.apps.googleusercontent.com';
 function Signin(){
-    const [username, setUsername] = useState('');
-    const[password,setPassword]=useState('');
-    const navigate=useNavigate();
+	const navigate=useNavigate();
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	localStorage.setItem('username','vick123@gmail.com');
+	localStorage.setItem('password','vicky0710.');
+	function handleSubmit(e) {
+		e.preventDefault();
+		// Check if username and password match stored values
+		const storedUsername = localStorage.getItem('username');
+		const storedPassword = localStorage.getItem('password');
+		if (username === storedUsername && password === storedPassword) {
+		  setIsLoggedIn(true);
+		  navigate('dashboard');
+		  // Store isLoggedIn in local storage or cookie
+		  localStorage.setItem('isLoggedIn', true);
+		}else {
+			alert("Credentials are not Match!!");
+		}
+	  }
+    
+    
 	const onSuccess=(res)=>{
          //alert('login successful');
 		 console.log(res.profileObj);
@@ -22,6 +41,13 @@ function Signin(){
 	const onFailure=(res)=>{
 		console.log(res);
 	}
+	const customStyles = {
+		backgroundColor: '#4285f4',
+		color: 'white',
+		borderRadius: '4px',
+		padding: '10px 20px',
+		fontSize: '16px',
+	  };
     return(
         <div className="main-div">
 			
@@ -37,13 +63,22 @@ function Signin(){
                         
                         <div className="p">Sign in to your account</div>
                         <div className="authentication-buttons">
+							<div className="parent-class">
 						<GoogleLogin clientId={clientId} buttonText='Sign in with Google' 
 							onSuccess={onSuccess} onFailure={onFailure}
 							cookiePolicy="single_host_origin"
 							isSignedIn={true}
-							className='button-1'
-							
+							className="custom-google-login"
+							render={renderProps => (
+        <button className="custom-google-login" onClick={renderProps.onClick} disabled={renderProps.disabled}>
+          <GoogleLoginBtn className="custom-google-icon" />
+          Login with Google
+        </button>
+      )}
+							// disabledStyle={true}
+							// style={customStyles}
 						/>
+						</div>
                         {/* <button className="button-1">
                         
                         <FontAwesomeIcon icon={faCookie} />
@@ -52,7 +87,8 @@ function Signin(){
                         <button className="button-1">
                         < Apple /> Sign in with Apple</button>
                         </div>
-                        <div className="input-fields">
+						<form className="input-fields" onSubmit={handleSubmit}>
+                        
 							<div className='input-container'>
                                 <div className="labelname">Email Address</div>
 								<input
@@ -61,6 +97,8 @@ function Signin(){
 									fullWidth
 									type='text'
 									label='Email address'
+									value={username}
+									onChange={(e) => setUsername(e.target.value)}
 								/>
 							</div>
 							<div className='input-container'>
@@ -69,9 +107,12 @@ function Signin(){
 								className="password-box"
 									fullWidth
 									type={'password'}
+									value={password}
 									label='Password'
+									onChange={(e) => setPassword(e.target.value)}
 								/>
 							</div>
+							
 
 							<div className='login-checkbox-desc-holder '>
 								<div className='checkbox-holder'>
@@ -92,12 +133,14 @@ function Signin(){
 								    
 									className='login-btn'
 									
-									onClick={()=>(navigate('dashboard'))}
+									type='submit'
 									>
 									Sign In
 								</button>
 							</div>
-                            </div>
+							
+                            
+							</form>
 
 								<p className='body2'>
 									Don’t have an account?  

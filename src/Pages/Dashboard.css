@@ -301,7 +301,7 @@ form {
     
   }
   
-  input[type="search"] {
+  input[type="search1"] {
     border: none;
     background: transparent;
     margin: 0;
@@ -312,13 +312,13 @@ form {
     border-radius: inherit;
   }
   
-  input[type="search"]::placeholder {
+  input[type="search1"]::placeholder {
     color: #B0B0B0;
     font-family: 'Lato',sans-serif;
     font-size: 14px;
   }
   
-  button[type="submit"] {
+  button[type="submit1"] {
     text-indent: -999px;
     overflow: hidden;
     width: 40px;
@@ -330,7 +330,6 @@ form {
     cursor: pointer;
     opacity: 0.7;
   }
-  button[type="submit"]:hover {
+  button[type="submit1"]:hover{
     opacity: 1;
   }
- 

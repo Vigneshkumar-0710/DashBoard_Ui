@@ -1,13 +1,57 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
-import Chart from "react-apexcharts";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell,faPieChart,faTags,faCalendar,faGear, faUser,faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { Total_Revenue, Total_Transactions,Total_Likes,Total_Users, Transactions, Schedules, Users, Settings, Dash, Notifications, Profile,search, Search, Rarrow, Darrow } from "./Icons";
-
+import  { useEffect, useState } from 'react';
+import Chart from 'react-apexcharts';
+import axios from 'axios';
 
 function Dashboard() {
+  const [pieData, setData] = useState([]);
+  useEffect(() => {
+    axios.get('https://restcountries.com/v2/all')
+      .then(response => {
+       
+        const filteredData = response.data
+        .filter(country => ['Asia', 'Europe', 'Africa'].includes(country.region))
+        .map(country => ({ name: country.name, population: country.population }))
+        .sort((a, b) => b.population - a.population)
+        .slice(0, 3);
+      setData(filteredData);
+        
+        console.log(filteredData);
+
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
+  const Pieoptions = {
+   
+    chart: {
+      type: 'pie',
+    },
+    legend: {
+      position: "right",
+      // offsetY: 100,
+      // offsetX: 50, // adjust this value to change the distance between the chart and the legend
+      labels: {
+        colors: ['#333'],
+        useSeriesColors: false,
+        style: {
+          fontSize: '14px',
+          fontFamily: 'Arial',
+          fontWeight: 400
+        }
+      }
+    },  
+    colors: ['#98D89E', '#EE8484', '#F6DC7D'],
+    series: pieData.map(country => country.population),
+    labels: pieData.map(country => country.name)
+  };
 
   const navigate=useNavigate();
     const data = {
@@ -37,32 +81,6 @@ function Dashboard() {
         },
       };
       
-  const data1 = {
-    series: [44, 55, 13],
-    options: {
-      chart: {
-        width: 380,
-        type: "pie",
-      },
-      labels: ["Basic Tees", "Custom Shot Pants", "Super Hoodies"],
-      
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200,
-            },
-            legend: {
-              position: "bottom",
-            },
-           
-          },
-        },
-      ],
-    },
-  };
-
   return (
     <div className="dashboard-page">
       <div className="left-bar">
@@ -84,8 +102,8 @@ function Dashboard() {
         <p className="dash-RB">Dashboard</p>
         <div className="see-all1">
         <form>
-  <input type="search" placeholder="Search..."/>
-  <button type="submit">Search</button>
+  <input type="search1" placeholder="Search..."/>
+  <button type="submit1">Search</button>
 </form>
       
       
@@ -147,12 +165,7 @@ function Dashboard() {
           <h2 className="today-heading">Top Products</h2>
           <div className="see-all">May - June 2021 <div className="Darrow"><Darrow /></div></div>
           </div>
-          <Chart
-            options={data1.options}
-            series={data1.series}
-            type="pie"
-            width={380}
-          />
+          <Chart options={Pieoptions} series={Pieoptions.series} type="pie" height="400" width='380' />
         </div>
         <div className="schedule-container">
         <div className="top-bar-box">
