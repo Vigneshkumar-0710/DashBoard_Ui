@@ -136,5 +136,30 @@ export const GoogleLoginBtn=(props)=>{
 </clipPath>
 </defs>
 </svg>
+    )
+}
+
+export const Yellow=(props)=>{
+    return(
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="5.5" cy="5.5" r="5.5" fill="#F6DC7D"/>
+</svg>
+
+    )
+}
+export const Green=(props)=>{
+    return(
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="5.5" cy="5.5" r="5.5" fill="#98D89E"/>
+</svg>
+
+    )
+}
+export const Red=(props)=>{
+    return(
+        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="5.5" cy="5.5" r="5.5" fill="#EE8484"/>
+</svg>
+
     )
 }

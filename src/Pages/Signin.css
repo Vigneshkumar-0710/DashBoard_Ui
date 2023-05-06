@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+@media screen and (max-width: 600px) {
+  .heading{
+    display: none;
+  }
+  .left-div{
+    display: none !important;
+    background-color:#e3e5e6;
+  }
+  .right-div{
+    width: 100% !important;
+  }
+}
 .left-div {
       display: flex;
       width: 30%;
@@ -110,13 +123,14 @@ h4 {
   
 }
 .input-fields{
+ 
   font-family: 'Lato', sans-serif;
-  font-size: 16px;
-  background-color: #FFFFFF;
-  padding: 25px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
+    font-size: 16px;
+    display: flex;
+    background-color: #FFFFFF;
+    padding: 25px;
+    border-radius: 20px;
+    flex-direction: column
 }
 .button-1{
   background-color: white;
@@ -193,9 +207,5 @@ h4 {
 margin-top: 10px !important;
   }
   .apexcharts-pie-series path {
-    stroke: none !important;
+    stroke:none !important;
   }
-  .form1{
-
-  }
-  

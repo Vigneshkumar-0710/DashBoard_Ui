@@ -7,8 +7,9 @@ import './Signin.css'
 import {GoogleLogin} from 'react-google-login';
 import { Apple,GoogleLoginBtn } from "./Icons";
 
-const clientId='159676038920-7nk2oqq649e9dk64uml2bubgt6q5fpuv.apps.googleusercontent.com';
+const clientId='159676038920-vrl6m394je5bd6crps9htma6l10gctch.apps.googleusercontent.com';
 function Signin(){
+	
 	const navigate=useNavigate();
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -39,6 +40,9 @@ function Signin(){
 
 	}
 	const onFailure=(res)=>{
+		if (res.error === "popup_closed_by_user") {
+			alert("Authentication window closed by user. Please try again.");
+		  }
 		console.log(res);
 	}
 	const customStyles = {
@@ -56,7 +60,7 @@ function Signin(){
             </div>
             <div className="right-div">
             <div className='sign-in-box'>
-						<div>
+						<div className='right-box'>
                         <div className='Si'> 
                         Sign in
                         </div>
@@ -87,8 +91,8 @@ function Signin(){
                         <button className="button-1">
                         < Apple /> Sign in with Apple</button>
                         </div>
-						<form className="input-fields" onSubmit={handleSubmit}>
-                        
+						<form onSubmit={handleSubmit} className="input-fields">
+                        {/* <div > */}
 							<div className='input-container'>
                                 <div className="labelname">Email Address</div>
 								<input
@@ -139,7 +143,7 @@ function Signin(){
 								</button>
 							</div>
 							
-                            
+                            {/* </div> */}
 							</form>
 
 								<p className='body2'>
