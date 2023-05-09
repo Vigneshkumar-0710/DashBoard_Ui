@@ -6,7 +6,7 @@ import './Signin.css'
 import { Apple,GoogleLoginBtn } from "./Icons";
 import { gapi } from "gapi-script";
 function Signin(){
-	const clientId='758992212961-37r8q2f4a4me9fmva8fmpnikk478ro9d.apps.googleusercontent.com'
+	const clientId='159676038920-7nk2oqq649e9dk64uml2bubgt6q5fpuv.apps.googleusercontent.com'
 	useEffect(()=>{
 		gapi.load("client:auth2",()=>{
 			gapi.auth2.init({clientId:clientId})
