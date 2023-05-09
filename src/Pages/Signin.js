@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useState} from "react";
-
+import GoogleLogin from "react-google-login";
 import './Signin.css'
-
-import {GoogleLogin} from 'react-google-login';
 import { Apple,GoogleLoginBtn } from "./Icons";
-
-const clientId='159676038920-vrl6m394je5bd6crps9htma6l10gctch.apps.googleusercontent.com';
+import { gapi } from "gapi-script";
 function Signin(){
-	
+	const clientId='758992212961-37r8q2f4a4me9fmva8fmpnikk478ro9d.apps.googleusercontent.com'
+	useEffect(()=>{
+		gapi.load("client:auth2",()=>{
+			gapi.auth2.init({clientId:clientId})
+		})
+	})
 	const navigate=useNavigate();
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -31,28 +33,20 @@ function Signin(){
 		}
 	  }
     
-    
 	const onSuccess=(res)=>{
-         //alert('login successful');
-		 console.log(res.profileObj);
+		localStorage.setItem('gmailLogin',true);
 		 navigate('dashboard');
-		 
-
+		 console.log('logged in');
+		 console.clear();
 	}
 	const onFailure=(res)=>{
-		if (res.error === "popup_closed_by_user") {
+		 if (res.error === "popup_closed_by_user") {
 			alert("Authentication window closed by user. Please try again.");
-		  }
-		console.log(res);
+		   }
+	
 	}
-	const customStyles = {
-		backgroundColor: '#4285f4',
-		color: 'white',
-		borderRadius: '4px',
-		padding: '10px 20px',
-		fontSize: '16px',
-	  };
     return(
+		
         <div className="main-div">
 			
             <div className="left-div">
@@ -68,7 +62,8 @@ function Signin(){
                         <div className="p">Sign in to your account</div>
                         <div className="authentication-buttons">
 							<div className="parent-class">
-						<GoogleLogin clientId={clientId} buttonText='Sign in with Google' 
+						<GoogleLogin 
+						clientId={clientId} buttonText='Sign in with Google' 
 							onSuccess={onSuccess} onFailure={onFailure}
 							cookiePolicy="single_host_origin"
 							isSignedIn={true}
@@ -79,15 +74,9 @@ function Signin(){
           Login with Google
         </button>
       )}
-							// disabledStyle={true}
-							// style={customStyles}
+							
 						/>
 						</div>
-                        {/* <button className="button-1">
-                        
-                        <FontAwesomeIcon icon={faCookie} />
-                        Sign in with Google
-                        </button> */}
                         <button className="button-1">
                         < Apple /> Sign in with Apple</button>
                         </div>
@@ -120,13 +109,6 @@ function Signin(){
 
 							<div className='login-checkbox-desc-holder '>
 								<div className='checkbox-holder'>
-									{/* <Checkbox
-										isChecked={[checkboxValid]}
-										index={0}
-										onValueChange={() => {
-											setCheckboxValid(!checkboxValid);
-										}}
-									/> */}
 								</div>
 							</div>
                             <div className='forgot-password'>
@@ -154,7 +136,7 @@ function Signin(){
 					</div>
 
             </div>
-         <Outlet/>
+         <Outlet />
         </div>
     )
 }

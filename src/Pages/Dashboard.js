@@ -1,16 +1,9 @@
-import React, { use } from "react";
+import React, { use, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBell,
-  faPieChart,
-  faTags,
-  faCalendar,
-  faGear,
-  faUser,
-  faThumbsUp,
-} from "@fortawesome/free-solid-svg-icons";
+import { GoogleLogout } from "react-google-login";
+import { GoogleLoginBtn, Logout } from "./Icons";
+
 import {
   Total_Revenue,
   Total_Transactions,
@@ -35,7 +28,8 @@ import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import axios from "axios";
 
-function Dashboard() {
+function Dashboard(props) {
+ 
   const [pieData, setData] = useState([]);
   const [lineData1, setlineData1] = useState([]);
   const [lineData2, setlineData2] = useState([]);
@@ -222,6 +216,8 @@ function Dashboard() {
       colors: ["#E9A0A0", "#9BDD7C"],
     },
   };
+  const navigate=useNavigate();
+  
   // chart.updateOptions({
   //   colors: ['red', 'blue', 'green']
   // });
@@ -232,27 +228,41 @@ function Dashboard() {
         <div className="left-top-content">
           <div className="heading1">Board.</div>
           <div className="dashboard-LB">
+            <div className="icon">
             <Dash />
-            Dashboard
+            </div>
+            <div className="details">Dashboard</div>
           </div>
           <div className="contents">
-            <Transactions />
-            Transactions
+          <div className="icon">   <Transactions /></div>
+            <div className="details"> Transactions</div>
           </div>
           <div className="contents">
-            <Schedules />
-            Schedules
+          <div className="icon">  <Schedules /></div>
+          <div className="details">   Schedules</div>
           </div>
           <div className="contents">
-            <Users />
-            Users
+          <div className="icon"><Users /></div>
+            <div className="details">  Users</div>
           </div>
           <div className="contents">
-            <Settings />
-            Settings
+          <div className="icon">  <Settings /></div>
+            <div className="details"> Settings</div>
           </div>
+          <div className="parent-class">
+          <GoogleLogout
+          buttonText="Logout"
+          onLogoutSuccess={(response) => {navigate(-1) }}
+          render={renderProps => (
+            <button className="custom-google-login1" onClick={renderProps.onClick} disabled={renderProps.disabled}>
+              <Logout className="custom-google-icon" />
+             <div className="logout"> Logout</div>
+            </button>
+          )}
+        ></GoogleLogout></div>
         </div>
         <div className="left-bottom-content">
+          
           <div className="contents1">Help</div>
           <div className="contents1">Contact Us</div>
         </div>
@@ -271,7 +281,7 @@ function Dashboard() {
             <div className="notification">
               <Notifications />
             </div>
-            <div className="profile">
+            <div className="profile" >  
               <Profile />
             </div>
           </div>
@@ -402,8 +412,10 @@ function Dashboard() {
                   <div className="location">at Central Jakarta</div>
                 </div>
               </div>
+              
             </div>
           </div>
+          
         </div>
       </div>
     </div>
